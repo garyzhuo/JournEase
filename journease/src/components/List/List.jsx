@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import { CircularProgress, Grid, Tpyography, InputLabel, MenuItem, FormControl, Select, Typography } from '@material-ui/core';
+import { CircularProgress, Grid, InputLabel, MenuItem, FormControl, Select, Typography } from '@material-ui/core';
 import useStyles from './styles';
+
+import PlaceDetails from '../PlaceDetails/PlaceDetails';
 
 
 const List = () => {
@@ -8,11 +10,24 @@ const List = () => {
     const [type, setType] = useState('restaurants');
     const [rating, setRating] = useState('');
 
+    const places = [
+        { name: 'Cool place'},
+        {name: 'Best Beer'},
+        {name: 'Best Steak'},
+        { name: 'Cool place'},
+        {name: 'Best Beer'},
+        {name: 'Best Steak'},
+        { name: 'Cool place'},
+        {name: 'Best Beer'},
+        {name: 'Best Steak'},
+    ];
     
     return (
         <div className={classes.container}>
             <Typography variant='h4'>
-            Local Flavors, Comfy Stays, and Must-See Displays: Dive into the Best Nearby!
+            Local Flavors, Comfy Stays, and Must-See Displays: 
+            <br />
+            Dive into the Best Nearby!
             </Typography>
             <FormControl className={classes.formControl}>
                 <InputLabel>Type</InputLabel>
@@ -32,6 +47,13 @@ const List = () => {
                     <MenuItem value={5}>Jonathan's Standard(Above 5.0)</MenuItem>
                 </Select>
             </FormControl>
+            <Grid container spacing={3} className={classes.list}>
+            {places?.map((place, i) => (
+                <Grid item key={i} xs={12}>
+                    <PlaceDetails place={place}/>
+                </Grid>
+            ))}
+            </Grid>
         </div>
     );
 }
